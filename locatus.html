@@ -1,0 +1,245 @@
+
+<!doctype html>
+<html class="no-js" lang="nl-NL" prefix="og: http://ogp.me/ns#">
+    <head>
+       
+        <meta charset="utf-8" />
+        <title>Dashboard en Helpdesk - Locatus</title>
+
+<link rel='stylesheet' id='tipi-css'  href='http://locatus.com/wp-content/themes/locatus/assets/css/tipi.min.css?ver=cached?rel=1496066656950' type='text/css' media='all' />
+<script type='text/javascript' src='https://js.arcgis.com/4.0/?ver=cached?rel=1496066656950'></script>
+ </head>
+    <body>
+ 
+    <div class="sticky-end">
+        <div class="sticky-end-body">
+
+<script>
+	require([
+		"esri/portal/Portal",
+		"esri/identity/OAuthInfo",
+		"esri/identity/IdentityManager",
+		"esri/portal/PortalQueryParams",
+		"esri/layers/FeatureLayer",
+		"esri/tasks/QueryTask",
+		"esri/tasks/support/Query",
+
+		"dojo/dom-style",
+		"dojo/dom-attr",
+		"dojo/dom",
+		"dojo/on",
+		"dojo/_base/array",
+		"dojo/promise/all",
+		"dojo/domReady!"
+	], function (Portal, OAuthInfo, esriId, PortalQueryParams, FeatureLayer, QueryTask,Query,
+				 domStyle, domAttr, dom, on, arrayUtils,all) {
+		var info = new OAuthInfo({
+			// Swap this ID out with registered application ID
+			appId: "jRc8sZlhWh9hqIPg", //LocatusDEV
+			//appId:"MMbo4CSd07BMuMSM", //Locatus13
+
+			popup: false,
+			popupCallbackUrl: 'http://locatus.com/oauth-callback.html'
+		});
+		esriId.registerOAuthInfos([info]);
+
+		esriId.checkSignInStatus(info.portalUrl + "/sharing").then(
+			function() {
+				displayItems();
+			}
+		).otherwise(
+			function() {
+				// Anonymous view
+				domStyle.set("anonymousPanel", "display", "block");
+				domStyle.set("personalizedPanel", "display", "none");
+			}
+		);
+
+		on(dom.byId("loc-online-sign-in"), "click", function() {
+			// user will be redirected to OAuth Sign In page
+			esriId.getCredential(info.portalUrl + "/sharing", { oAuthPopupConfirmation :false}).then(function (cred) {
+				displayItems();
+			});
+			//window.location.reload();
+		});
+
+		on(dom.byId("sign-out"), "click", function() {
+			esriId.destroyCredentials();
+			window.location.reload();
+		});
+
+		function displayItems() {
+			domStyle.set("anonymousPanel", "display", "none");
+			domStyle.set("personalizedPanel", "display", "black");
+			var portal = new Portal();
+			// Setting authMode to immediate signs the user in once loaded
+			portal.authMode = "immediate";
+			// Once loaded, user is signed in
+			portal.load().then(function() {
+				// Create query parameters for the portal search
+				domAttr.set("userId", "innerHTML", portal.user.username);
+				domStyle.set("anonymousPanel", "display", "none");
+				domStyle.set("personalizedPanel", "display", "block");
+
+				// Query the items based on the queryParams created from portal abovel
+				var qt = new QueryTask({
+					url: "http://services3.arcgis.com/8lO0DoQ7E41EHnqw/arcgis/rest/services/MapPortal/FeatureServer/0"
+				});
+				var queryParamsWebmaps = new PortalQueryParams({
+					//query: "owner:Locatus_Automation tags:'Locatus_Automation_Tag' type:'Web Map' -title:'Demo'",
+					query: "owner:LocatusDev tags:'Locatus_Automation_Tag' type:'Web Map'",
+					sortField: "numViews",
+					sortOrder: "desc",
+					num: 20
+				});
+				//query pdf files
+				var queryParamsPdf = new PortalQueryParams({
+					//query: "owner:Locatus_Automation tags:'Locatus_Content' type:'PDF'",
+					query: "owner:LocatusDev tags:'Locatus_Content' type:'PDF'",
+					sortField: "numViews",
+					sortOrder: "desc",
+					num: 20
+				});
+
+				var query = new Query();
+				query.where = "1=1";
+				query.outFields = ["*"];
+				var layerQuery = qt.execute(query);//.queryFeatures(query);
+				
+				var portalQueryWebmaps = portal.queryItems(queryParamsWebmaps);
+				var portalQueryPdf = portal.queryItems(queryParamsPdf);
+				var queries = [layerQuery, portalQueryWebmaps,portalQueryPdf];
+				all(queries).then(createGallery)
+			});
+		}
+
+		function createGallery(promiseItems) {
+			var mapPortalItems = promiseItems[0];
+			var userItems = promiseItems[1];
+			var pdfItems = promiseItems[2];
+			var htmlFragment = "";
+			var rowCounter = 1;
+			cred = esriId.findCredential(info.portalUrl);
+			htmlFragment += "<div class=\"esri-container\">";
+			arrayUtils.forEach(userItems.results, function (item) {
+
+				var mapTypePrefix = "MapType_";
+				var mapTypeName = "";
+				for (var i = 0; i < item.tags.length; i++)
+				{
+					var tag = item.tags[i];
+					if (tag.substring(0, mapTypePrefix.length) == mapTypePrefix)
+					{
+						mapTypeName = tag.substring(mapTypePrefix.length, tag.length);
+					}
+				}
+				var feature = arrayUtils.filter(mapPortalItems.features, function (item) {
+					return item.attributes["Name"] == mapTypeName;
+				});
+
+				var imageUrl = "http://static.arcgis.com/images/desktopapp.png";
+				var appUrl = "http://www.goad.nl/webapps/apps/Locatus/?webmap=";
+
+				if (feature.length > 0)
+				{
+					imageUrl = feature[0].attributes["IconURL"];
+					appUrl = feature[0].attributes["URL"]
+				}
+
+				if(rowCounter == 1) {
+					htmlFragment += "<div class=\"row\">";
+				}
+
+				htmlFragment += (
+				"<div class=\"scol12 pcol12 tcol6 col6\">" +
+				"<div class=\"panel esri-item-wrapper\">" +
+				"<div class=\"panel-body\">" +
+				(imageUrl ?
+					"<div class=\"esri-image\" style=\"background-image:url(" + imageUrl + ");\"></div>" :
+						"<div class=\"esri-image esri-null-image\">Thumbnail not available</div>"
+				) +
+				(item.title ?
+					"<div class=\"esri-title\"><a class=\"button button--support button--wide button--tiny\" href=\"" + appUrl + item.id + "&token=" + cred.token + "\" target=_blank>" + (item.title || "") + "</a></div>" :
+						"<div class=\"esri-title esri-null-title\">Title not available</div>"
+				) +
+				"</div>" +
+				"</div>" +
+				"</div>");
+
+				if(rowCounter == 2) {
+					// Close the row after 3 items
+					htmlFragment += "</div>";
+					rowCounter = 1;
+				} else {
+					rowCounter++;
+				}
+			});
+
+			//show pdf files (if there are any)
+			arrayUtils.forEach(pdfItems.results,function(item){
+									htmlFragment += (
+				"<div class=\"scol12 pcol12 tcol6 col6\">" +
+				"<div class=\"panel esri-item-wrapper\">" +
+				"<div class=\"panel-body\">" +
+				
+				(item.title ?
+					"<div class=\"esri-title\"><a class=\"button button--support button--wide button--tiny\" href=\"" + item.itemUrl + "/data?token=" + cred.token + "\" target=_blank>" + (item.title || "") + "</a></div>" :
+						"<div class=\"esri-title esri-null-title\">Title not available</div>"
+				) +
+				"</div>" +
+				"</div>" +
+				"</div>");
+
+			});
+			htmlFragment += "</div>";
+			dom.byId("itemGallery").innerHTML = htmlFragment;
+			document.getElementById('esri-maps').scrollIntoView();
+			window.scrollBy(0, -90);
+		}
+
+	});
+</script>
+<header id="dashboard-header" class="fluid">
+	<div class="fullscreen-banner">
+		<div class="fullscreen-banner-content">
+			
+			<div class="fullscreen-banner-content-body">
+				
+				<div class="fullscreen-banner-footer">
+					<div class="row">
+
+						<div class="col4 pcol12 scol12">
+							<div class="panel">
+								<div class="panel-body">
+									
+									<h3>Locatus Online</h3>
+
+									<button id="loc-online-sign-in" class="button button--support button--wide button--tiny">Inloggen</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+					
+			</div>
+</header>
+<section id="esri-maps" class="fluid">
+    <div class="wrapper">
+        <div id="anonymousPanel" style="display: none; padding: 5px; text-align: center;">
+
+        </div>
+
+        <div id="personalizedPanel" style="display: none; padding: 5px; text-align: center;">
+            Welkom <span id="userId" style="font-weight: bold;"></span> &nbsp;-&nbsp;
+            <span id="sign-out" class="action">Uitloggen</span>
+        </div>
+
+        <div id="itemGallery" class="esri-item-gallery" style="width: 100%;"></div>
+    </div>
+</section>
+
+   </body>
+</html>
