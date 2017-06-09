@@ -1,0 +1,29 @@
+.mobileInfoBtn {
+	display: none;
+}
+
+body.mobile-view .mobileInfoBtn {
+	display: block;
+}
+
+.mobileInfoBtn {
+	position: absolute;
+	
+	
+	right: 10px;
+	width: 57px;
+	height: 57px;
+	
+	cursor: pointer;
+	
+	z-index: 2;
+	 /* EsriNL MVH: 20160309: 
+	 top: 8px;
+	 background: url(../../../../../resources/tpl/viewer/icons/mobile-info.png);opacity: 0.9;*/
+	 background: url(../../../../../resources/tpl/viewer/icons/infosymbol-gl_57x57.png);
+	bottom:-20px;
+}
+
+.mobileInfoBtn:hover {
+	opacity: 1.0;
+}
