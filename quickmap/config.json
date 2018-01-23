@@ -1,0 +1,473 @@
+{
+  "theme": {
+    "name": "JewelryBoxTheme",
+    "styles": [
+      "yellow",
+      "cyan",
+      "default",
+      "black",
+      "green",
+      "red",
+      "purple",
+      "blue"
+    ],
+    "version": "2.7",
+    "sharedTheme": {
+      "isPortalSupport": true,
+      "useHeader": false,
+      "useLogo": false
+    },
+    "customStyles": {
+      "mainBackgroundColor": "#fcd207"
+    }
+  },
+  "portalUrl": "https://esrinederland.maps.arcgis.com",
+  "appId": "",
+  "authorizedCrossOriginDomains": [
+    "atlas.cyclomedia.com",
+    "atlas.cyclomedia.com",
+    "devteam.esri.nl",
+    "devteam.esri.nl",
+    "kaart.geo4oov.nl"
+  ],
+  "title": "<div class=\"attribute-custom-style\"><font color=\"#000001\"><b> Quick Map App</b></font></div>",
+  "subtitle": "<div class=\"attribute-custom-style\"><font color=\"#696969\">with Web AppBuilder for ArcGIS</font></div>",
+  "keepAppState": true,
+  "logo": "images/app-logo.png",
+  "geometryService": "https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+  "links": [],
+  "widgetOnScreen": {
+    "widgets": [
+      {
+        "uri": "themes/JewelryBoxTheme/widgets/HeaderController/Widget",
+        "position": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "height": 40,
+          "relativeTo": "browser"
+        },
+        "version": "2.7",
+        "id": "themes_JewelryBoxTheme_widgets_HeaderController_Widget_21",
+        "name": "HeaderController"
+      },
+      {
+        "uri": "widgets/Scalebar/Widget",
+        "position": {
+          "left": 7,
+          "bottom": 25,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_Scalebar_Widget_22",
+        "name": "Scalebar",
+        "config": "configs/Scalebar/config_widgets_Scalebar_Widget_22.json"
+      },
+      {
+        "uri": "widgets/Search/Widget",
+        "position": {
+          "left": 55,
+          "top": 5,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_Search_Widget_23",
+        "name": "Search",
+        "config": "configs/Search/config_widgets_Search_Widget_23.json"
+      },
+      {
+        "uri": "widgets/Coordinate/Widget",
+        "position": {
+          "left": 7,
+          "bottom": 5,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_Coordinate_Widget_24",
+        "name": "Coordinate"
+      },
+      {
+        "position": {
+          "left": 55,
+          "top": 45,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 1,
+        "id": "_25",
+        "version": "2.7",
+        "closeable": true,
+        "uri": ""
+      },
+      {
+        "position": {
+          "left": 105,
+          "top": 45,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 2,
+        "id": "_26"
+      },
+      {
+        "position": {
+          "left": 155,
+          "top": 45,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 3,
+        "id": "_27"
+      },
+      {
+        "uri": "widgets/OverviewMap/Widget",
+        "position": {
+          "right": 0,
+          "bottom": 0,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_OverviewMap_Widget_28",
+        "name": "OverviewMap"
+      },
+      {
+        "uri": "widgets/HomeButton/Widget",
+        "position": {
+          "left": 7,
+          "top": 75,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_HomeButton_Widget_29",
+        "name": "HomeButton"
+      },
+      {
+        "uri": "widgets/MyLocation/Widget",
+        "position": {
+          "left": 7,
+          "top": 110,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_MyLocation_Widget_30",
+        "name": "MyLocation"
+      },
+      {
+        "uri": "widgets/AttributeTable/Widget",
+        "version": "2.7",
+        "position": {
+          "relativeTo": "browser"
+        },
+        "id": "widgets_AttributeTable_Widget_31",
+        "name": "AttributeTable",
+        "config": "configs/AttributeTable/config_widgets_AttributeTable_Widget_31.json",
+        "visible": false
+      },
+      {
+        "uri": "widgets/Splash/Widget",
+        "visible": false,
+        "position": {
+          "relativeTo": "browser"
+        },
+        "version": "2.7",
+        "id": "widgets_Splash_Widget_32",
+        "name": "Splash"
+      },
+      {
+        "uri": "widgets/ZoomSlider/Widget",
+        "position": {
+          "top": 5,
+          "left": 7,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_ZoomSlider_Widget_33",
+        "name": "ZoomSlider"
+      },
+      {
+        "uri": "widgets/ExtentNavigate/Widget",
+        "visible": false,
+        "position": {
+          "top": 148,
+          "left": 7,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_ExtentNavigate_Widget_34",
+        "name": "ExtentNavigate"
+      },
+      {
+        "uri": "widgets/FullScreen/Widget",
+        "visible": false,
+        "position": {
+          "right": 8,
+          "top": 8,
+          "relativeTo": "map"
+        },
+        "version": "2.7",
+        "id": "widgets_FullScreen_Widget_35",
+        "name": "FullScreen"
+      }
+    ],
+    "groups": [
+      {
+        "visible": false,
+        "panel": {
+          "uri": "themes/JewelryBoxTheme/panels/LDockablePanel/Panel",
+          "position": {
+            "left": 0,
+            "top": 40,
+            "bottom": 0,
+            "width": 360,
+            "relativeTo": "browser"
+          }
+        },
+        "maxWidgets": 1,
+        "placeholderIndex": 1,
+        "id": "_20",
+        "widgets": [
+          {
+            "name": "EsriNL.CreateQuickMapWidget",
+            "version": "2.7",
+            "uri": "widgets/EsriNL.CreateQuickMapWidget/Widget",
+            "config": "configs/EsriNL.CreateQuickMapWidget/config_widgets_EsriNL.CreateQuickMapWidget_Widget_36.json",
+            "id": "widgets_EsriNL.CreateQuickMapWidget_Widget_36"
+          }
+        ],
+        "label": "Group 0",
+        "icon": "widgets/EsriNL.BNRCreateHTMLWidget/images/icon.png?wab_dv=2.7"
+      }
+    ],
+    "panel": {
+      "uri": "jimu/OnScreenWidgetPanel",
+      "position": {
+        "relativeTo": "map"
+      }
+    }
+  },
+  "map": {
+    "3D": false,
+    "2D": true,
+    "position": {
+      "left": 0,
+      "top": 40,
+      "right": 0,
+      "bottom": 0
+    },
+    "itemId": "da02f7e87f114bc1bb70afcba257e138",
+    "mapOptions": {
+      "extent": {
+        "type": "extent",
+        "xmin": 292436.302313515,
+        "ymin": 6456673.275315845,
+        "xmax": 877086.2679589586,
+        "ymax": 7102457.052017419,
+        "spatialReference": {
+          "wkid": 102100
+        }
+      }
+    },
+    "id": "map",
+    "portalUrl": "https://esrinederland.maps.arcgis.com/"
+  },
+  "widgetPool": {
+    "panel": {
+      "uri": "themes/JewelryBoxTheme/panels/FoldablePanel/Panel",
+      "position": {
+        "top": 5,
+        "right": 5,
+        "bottom": 5,
+        "zIndex": 5,
+        "relativeTo": "map"
+      }
+    },
+    "widgets": [],
+    "groups": []
+  },
+  "mobileLayout": {
+    "widgetOnScreen": {
+      "widgets": [
+        {
+          "uri": "themes/JewelryBoxTheme/widgets/HeaderController/Widget",
+          "position": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "height": 40,
+            "relativeTo": "browser"
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/Scalebar/Widget",
+          "position": {
+            "left": 7,
+            "bottom": 40,
+            "relativeTo": "map"
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/Search/Widget",
+          "position": {
+            "left": 55,
+            "top": 5
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/Coordinate/Widget",
+          "position": {
+            "left": 7,
+            "bottom": 17,
+            "relativeTo": "map"
+          },
+          "version": "2.7"
+        },
+        {
+          "position": {
+            "left": 55,
+            "top": 45
+          }
+        },
+        {
+          "position": {
+            "left": 105,
+            "top": 45
+          }
+        },
+        {
+          "position": {
+            "left": 155,
+            "top": 45
+          }
+        },
+        {
+          "uri": "widgets/OverviewMap/Widget",
+          "position": {
+            "right": 0,
+            "bottom": 0
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/HomeButton/Widget",
+          "inPanel": false,
+          "position": {
+            "left": 7,
+            "top": 75
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/MyLocation/Widget",
+          "inPanel": false,
+          "position": {
+            "left": 7,
+            "top": 110
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/AttributeTable/Widget",
+          "version": "2.7",
+          "position": {
+            "relativeTo": "browser"
+          }
+        },
+        {
+          "uri": "widgets/Splash/Widget",
+          "visible": false,
+          "position": {
+            "relativeTo": "browser"
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/ZoomSlider/Widget",
+          "visible": true,
+          "position": {
+            "top": 5,
+            "left": 7
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/ExtentNavigate/Widget",
+          "visible": false,
+          "position": {
+            "top": 148,
+            "left": 7
+          },
+          "version": "2.7"
+        },
+        {
+          "uri": "widgets/FullScreen/Widget",
+          "visible": false,
+          "position": {
+            "right": 8,
+            "top": 8
+          },
+          "version": "2.7"
+        }
+      ],
+      "groups": [
+        {
+          "visible": false,
+          "panel": {
+            "uri": "themes/JewelryBoxTheme/panels/LDockablePanel/Panel",
+            "position": {
+              "left": 0,
+              "top": 40,
+              "bottom": 0,
+              "width": 360,
+              "relativeTo": "browser"
+            }
+          },
+          "maxWidgets": 1
+        }
+      ]
+    },
+    "map": {
+      "position": {
+        "left": 0,
+        "top": 40,
+        "right": 0,
+        "bottom": 0
+      }
+    },
+    "widgetPool": {
+      "panel": {
+        "uri": "themes/JewelryBoxTheme/panels/FoldablePanel/Panel",
+        "position": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "zIndex": 5
+        }
+      }
+    }
+  },
+  "loadingPage": {
+    "backgroundColor": "#508dca",
+    "backgroundImage": {
+      "visible": false
+    },
+    "loadingGif": {
+      "visible": true,
+      "uri": "configs/loading/images/predefined_loading_1.gif",
+      "width": 58,
+      "height": 29
+    }
+  },
+  "wabVersion": "2.7",
+  "isTemplateApp": true,
+  "isWebTier": false,
+  "httpProxy": {
+    "useProxy": true,
+    "alwaysUseProxy": false,
+    "url": "",
+    "rules": []
+  },
+  "dataSource": {
+    "dataSources": {},
+    "settings": {}
+  }
+}
