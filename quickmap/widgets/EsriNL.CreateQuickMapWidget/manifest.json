@@ -1,0 +1,11 @@
+{
+  "name": "EsriNL.CreateQuickMapWidget",
+  "platform": "HTML",
+  "version": "2.7",
+  "wabVersion": "2.7",
+  "author": "Esri NL Devteam (MVH)",
+  "description": "EsriNL.CreateQuickMapWidget",
+  "copyright": "(c) Esri Nederland BV",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "featureActions": []
+}

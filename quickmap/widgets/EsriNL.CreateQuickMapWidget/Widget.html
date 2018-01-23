@@ -1,0 +1,26 @@
+<div class="quickmap">
+  <div id="HeaderPanel">${nls.header}</div>
+  <div id="BasemapPanel">${nls.pickabasemap}
+    <div data-dojo-attach-point="BaseMapGalleryNode" id="BaseMapGalleryNode"></div>
+  </div>
+  <div id="SymbolPanel">${nls.pickasymbol}
+    <div data-dojo-attach-point="SymbolPickerNode" class="symbolpickernode"></div>
+  </div>
+  <div id="TextPanel">
+    <div>
+      <span></span><input type="text" placeholder="${nls.entertitle}" data-dojo-attach-point="txtTitle" />
+    </div>
+    <div>
+    <span></span> <input type="text" placeholder="${nls.enterlabel}" data-dojo-attach-point="txtLabel" />
+    </div>
+  </div>
+  <div id="ResultPanel">${nls.showresult}
+    
+    <div>
+      <input type="text" data-dojo-attach-point="ResultText" id="ResultText"/><input type="button" value="${nls.copy}" data-dojo-attach-point="CopyResult"/>
+    </div>
+  </div>
+  <div id="PreviewPanel">${nls.preview}
+    <div data-dojo-attach-point="PreviewNode" id="PreviewNode"></div>
+  </div>
+</div>
